@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cfhelloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cfhelloworld
+  template:
+    metadata:
+      labels:
+        app: cfhelloworld
+    spec:
+      containers:
+      - name: cfhelloworld
+        image: eu.gcr.io/zageno-platform-158819/cfhelloworld
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cfhelloworldsvc
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  selector:
+    app: cfhelloworld
+  type: LoadBalancer
