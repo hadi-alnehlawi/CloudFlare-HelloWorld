@@ -1,10 +1,7 @@
 variable "email" {}
-
-variable "token" {}
-
-variable "cfdomain" {}
+variable "cfzoneid" {}
+variable "apikey" {}
 variable "cfname" {}
 variable "cfvalue" {}
-
 variable "cftype" {}
 variable "cfproixed" {}
